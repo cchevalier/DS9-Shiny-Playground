@@ -22,10 +22,5 @@ knit        : slidify::knit2slides
 ## Slide 2
   
 Thank you!
-  
---- 
 
-
-
-
-
+---
