@@ -1,2 +1,3 @@
-# DS9-Shiny-Playground
-Learning Shiny with DS9 - Developing Data Products
+# ds9-playground  
+
+Learning with DS9 - Developing Data Products
