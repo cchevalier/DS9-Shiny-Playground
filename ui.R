@@ -17,6 +17,7 @@ shinyUI(fluidPage(
       
       # sidebarLayout
       sidebarLayout(
+        
         # Settings
         sidebarPanel(
           h4('Settings'),
@@ -31,6 +32,7 @@ shinyUI(fluidPage(
             value = 0.2
           ),
           
+          # bins
           sliderInput(
             "bins",
             "Number of exponentials per simulation:",
@@ -39,6 +41,8 @@ shinyUI(fluidPage(
             step = 5,
             value = 25
           ),
+          
+          # nosim
           sliderInput(
             "nosim",
             "Number of simulations:",
@@ -54,7 +58,7 @@ shinyUI(fluidPage(
           tabsetPanel(
             tabPanel("Sample"),
             tabPanel("Distribution", plotOutput("distPlot")),
-            tabPanel("Misc.")
+            tabPanel("Misc.", verbatimTextOutput("stats"))
           )
         )
       )
@@ -70,6 +74,6 @@ shinyUI(fluidPage(
   hr(),
   
   fluidRow(column(6, offset = 1,
-                  h5("CChevalier")))
+                  h5("CChevalier, July 2015")))
   
 ))
