@@ -12,7 +12,19 @@ clt_func <- function(x, n, mu, sigma) (mean(x) - mu) / (sigma / sqrt(n))
 
 
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, clientData, session) {
+  
+  observe({
+    
+    i <- input$i
+    imax <- input$nosim
+    if (i > imax) i <- imax
+    
+    updateSliderInput(session, "i",
+                      value = i,
+                      max = input$nosim)
+  })
+  
   
   #
   simus_pool <- reactive({
