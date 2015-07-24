@@ -1,28 +1,47 @@
 # server.R
 
 library(shiny)
+library(ggplot2)
 
-# Define server logic required to draw a histogram
+
+set.seed(8765432)
+
+# CLT normalize function
+clt_func <- function(x, n, mu, sigma) (mean(x) - mu) / (sigma / sqrt(n))
+
+
+
+# 
 shinyServer(function(input, output) {
   
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should be automatically
-  #     re-executed when inputs change
-  #  2) Its output type is a plot
+  # pool of simus
+#   pool <- reactiveValues()
+#   
+#   pool$simus <- matrix(rexp(input$nosim * input$n, input$lambda), ncol = input$n, byrow = TRUE)
+#   
+#   
+#   sim_mean <- reactive({
+#     apply(isolate(pool$simus), 1, mean)
+#   })
+#   
+
+  output$plotSample <- renderPlot({
+    demo_exp <- rexp(input$n, input$lambda)
+    hist(demo_exp, freq = FALSE, col = "blue", 
+         xlim = c(0, 20),
+         xlab = "Exp. value", 
+         main =  "Histogram of the sample distribution of 40 exponentials")    
+  })
   
-  output$distPlot <- renderPlot({
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  
-    })
+  output$plotDistSimMean <- renderPlot({
+    simus <- matrix(rexp(input$nosim * input$n, input$lambda), ncol = input$n, byrow = TRUE)
+    sim_mean <- apply(simus, 1, mean)
+    hist(sim_mean)
+  })
   
   output$stats <- renderPrint({
-    summary(rnorm(input$nosim)) })
+    summary(rexp(input$n, input$lambda))
+  })
   
   
   
