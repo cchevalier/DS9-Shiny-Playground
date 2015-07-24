@@ -68,16 +68,21 @@ shinyUI(fluidPage(
             br(),
             p("Here you can see the distribution of a given simulation"),
             
-#             sliderInput(
-#               "i",
-#               "Simulation:",
-#               min = 0,
-#               max = 499,
-#               step = 1,
-#               value = 1
-#             ),
+            sliderInput(
+              "i",
+              "Simulation:",
+              min = 1,
+              max = 500,
+              step = 1,
+              value = 1
+            ),
             
-            plotOutput("plotSample")
+            plotOutput("plotDistSample"),
+            br(),
+            p("Mean: Theoritical vs Computed"),
+            verbatimTextOutput("textMeanSample"),
+            p("SDev: Theoritical vs Computed"),
+            verbatimTextOutput("textSDevSample")
           ),
           
           tabPanel(
@@ -85,7 +90,8 @@ shinyUI(fluidPage(
             plotOutput("plotDistSimMean")
           ),
           tabPanel(
-            "Misc.", 
+            "Q-Q plot",
+            plotOutput("plotQQSimMean"),
             br(),
             verbatimTextOutput("stats")
           )

@@ -11,32 +11,80 @@ clt_func <- function(x, n, mu, sigma) (mean(x) - mu) / (sigma / sqrt(n))
 
 
 
-# 
+
 shinyServer(function(input, output) {
   
-  # pool of simus
-#   pool <- reactiveValues()
-#   
-#   pool$simus <- matrix(rexp(input$nosim * input$n, input$lambda), ncol = input$n, byrow = TRUE)
-#   
-#   
-#   sim_mean <- reactive({
-#     apply(isolate(pool$simus), 1, mean)
-#   })
-#   
-
-  output$plotSample <- renderPlot({
-    demo_exp <- rexp(input$n, input$lambda)
-    hist(demo_exp, freq = FALSE, col = "blue", 
-         xlim = c(0, 20),
-         xlab = "Exp. value", 
-         main =  "Histogram of the sample distribution of 40 exponentials")    
+  #
+  simus_pool <- reactive({
+    matrix(rexp(1000 * 50, input$lambda), ncol = 50, byrow = TRUE)
   })
   
+  exp_mean_th <- reactive(1/input$lambda)
+  exp_sdev_th <- reactive(1/input$lambda)
+  
+  simus <- reactive({
+    simus_pool()[1:input$nosim, 1:input$n]
+  })
+  
+  simus_mean <- reactive({
+    apply(simus(), 1, mean)
+  })
+
+  simus_mean_norm <- reactive({
+    apply(simus(), 1, clt_func, input$n, exp_mean_th(), exp_sdev_th())
+  })
+  
+  
+  demo_exp <- reactive({
+    simus()[input$i,]
+    })
+  
+  
+  
+  #
+  # Sample Simulation Panel
+  #
+  output$plotDistSample <- renderPlot({
+    hist(
+      demo_exp(), freq = TRUE, col = "blue",
+      xlab = "Exp. value",
+      main =  paste("Histogram of sample simulation no: ",
+                    input$i,
+                    " - (",
+                    input$n,
+                    " exponentials)",
+                    sep = '')
+    )
+  })
+  
+  output$textMeanSample <- renderPrint({
+    c(exp_mean_th(), mean(demo_exp()))
+  })
+  
+  output$textSDevSample <- renderPrint({
+    c(exp_sdev_th(), sd(demo_exp()))
+  })
+  
+  
+  
+  #
+  # Distribution Panel
+  #
   output$plotDistSimMean <- renderPlot({
-    simus <- matrix(rexp(input$nosim * input$n, input$lambda), ncol = input$n, byrow = TRUE)
-    sim_mean <- apply(simus, 1, mean)
-    hist(sim_mean)
+    sim_mean_norm <- simus_mean_norm()
+    df_sim_mean_norm <- data.frame(sim_mean_norm)
+    h2 <- ggplot(df_sim_mean_norm, aes(x = sim_mean_norm)) 
+    h2 <- h2 + geom_histogram(alpha = .20, binwidth=.3, colour = "black", aes(y = ..density..))
+    h2 <- h2 + stat_function(fun = dnorm, size = 2, colour = "red")
+    h2  })
+  
+  
+  #
+  # Q-Q plot Panel
+  #
+  output$plotQQSimMean <- renderPlot({
+    qqnorm(simus_mean_norm())
+    qqline(simus_mean_norm(), col = "red", lwd = 2)
   })
   
   output$stats <- renderPrint({
