@@ -1,6 +1,6 @@
 ---
-title       : DS9 Playground
-subtitle    : Learning Shiny, Slidify, etc...
+title       : Tests
+subtitle    : Trying things on the side...
 author      : CChevalier
 job         : It's complicated
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -11,19 +11,20 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Slide 2: Read-And-Delete
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+
+## Slide 2
+
 
 --- .class #id 
 
 
-# Slide 3
+
+## Slide 3
   
 
 ---
+
 
 
 ## Slide 4
@@ -32,8 +33,8 @@ knit        : slidify::knit2slides
 ---
 
 
+
 ## Slide 5
   
 Thank you!
-
 
