@@ -77,15 +77,26 @@ c((1/lambda)^2 /n, var(simus_mean))
 
 
 --- 
-## Now there is a webapp for that!
-Available on shinyapp.io: https://cchevalier.shinyapps.io/ds9-playground
-
+## Now there is a ShinyApp for that!
+Available on shinyapp.io: https://cchevalier.shinyapps.io/ds9-playground  
   
+<div >
+    <img height='500' src='./assets/img/myapp.png' />
+</div>  
 
-  
 
 ---
 ## Slide 5
+
+This ShinyApp allows the user to experiment with the exponential distribution and to assess the validity of the Central Limit Theorem (CLT) as also done in the first project of Course DS6 - Statistical Inference.
+
+This app generates first a 1000 simulations of 50 exponentials each for a user specified rate of the exponential distribution (the lambda parameter).
+
+From this overall pool of simulations the user is able to select a subset (n, nosim) of the pre-computed simulations in order to assess the impact of these parameters on the statistical analysis of the mean of each simulation. The app presents the following results in different numbered panels:
+
+1. Basic statistical analysis of a given simulation  
+2. Plot of the mean value of each simulation  
+3. CLT: Distribution of mean values  
+4. CLT: Q-Q plot of mean values  
   
-  
-Thank you!
+### Thank you!

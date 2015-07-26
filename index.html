@@ -110,10 +110,14 @@ c((1/lambda)^2 /n, var(simus_mean))
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>Now there is a webapp for that!</h2>
+    <h2>Now there is a ShinyApp for that!</h2>
   </hgroup>
   <article data-timings="">
-    <p>Available on shinyapp.io: <a href="https://cchevalier.shinyapps.io/ds9-playground">https://cchevalier.shinyapps.io/ds9-playground</a></p>
+    <p>Available on shinyapp.io: <a href="https://cchevalier.shinyapps.io/ds9-playground">https://cchevalier.shinyapps.io/ds9-playground</a>  </p>
+
+<div >
+    <img height='500' src='./assets/img/myapp.png' />
+</div>  
 
   </article>
   <!-- Presenter Notes -->
@@ -124,7 +128,20 @@ c((1/lambda)^2 /n, var(simus_mean))
     <h2>Slide 5</h2>
   </hgroup>
   <article data-timings="">
-    <p>Thank you!</p>
+    <p>This ShinyApp allows the user to experiment with the exponential distribution and to assess the validity of the Central Limit Theorem (CLT) as also done in the first project of Course DS6 - Statistical Inference.</p>
+
+<p>This app generates first a 1000 simulations of 50 exponentials each for a user specified rate of the exponential distribution (the lambda parameter).</p>
+
+<p>From this overall pool of simulations the user is able to select a subset (n, nosim) of the pre-computed simulations in order to assess the impact of these parameters on the statistical analysis of the mean of each simulation. The app presents the following results in different numbered panels:</p>
+
+<ol>
+<li>Basic statistical analysis of a given simulation<br></li>
+<li>Plot of the mean value of each simulation<br></li>
+<li>CLT: Distribution of mean values<br></li>
+<li>CLT: Q-Q plot of mean values<br></li>
+</ol>
+
+<h3>Thank you!</h3>
 
   </article>
   <!-- Presenter Notes -->
@@ -148,7 +165,7 @@ c((1/lambda)^2 /n, var(simus_mean))
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Now there is a webapp for that!'>
+        data-slide=3 title='Now there is a ShinyApp for that!'>
          3
       </a>
     </li>
