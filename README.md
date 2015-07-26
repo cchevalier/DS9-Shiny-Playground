@@ -1,6 +1,6 @@
 # ds9-playground  
 
-Learning with DS9 - Developing Data Products
+Learning Shiny, Slidify, etc... with DS9 - Developing Data Products
 
 
 [App] (https://cchevalier.shinyapps.io/ds9-playground)  

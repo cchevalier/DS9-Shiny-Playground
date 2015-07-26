@@ -9,9 +9,6 @@ library(shiny)
 library(ggplot2)
 
 
-# Init random process
-set.seed(8765432)
-
 # CLT normalize function
 clt_func <- function(x, n, mu, sigma) (mean(x) - mu) / (sigma / sqrt(n))
 
@@ -33,6 +30,7 @@ shinyServer(function(input, output, clientData, session) {
   
   # Overall pool of simulations (1000 sims of 50 exp using user lambda)
   simus_pool <- reactive({
+    set.seed(8765432)
     matrix(rexp(1000 * 50, input$lambda), ncol = 50, byrow = TRUE)
   })
   
@@ -59,6 +57,7 @@ shinyServer(function(input, output, clientData, session) {
   simus_selected <- reactive({ 
     simus()[input$i,]
   })
+
   
   
   #
@@ -73,8 +72,9 @@ shinyServer(function(input, output, clientData, session) {
                     " - (",
                     input$n,
                     " exponentials)",
-                    sep = '')
-    )
+                    sep = ''))
+    abline(v = mean(simus_selected()), col = "purple", lwd = 2)
+    abline(v = exp_mean_th(), col = "red", lwd = 2)
   })
   
   output$textMeanSample <- renderPrint({
@@ -84,6 +84,31 @@ shinyServer(function(input, output, clientData, session) {
   output$textSDevSample <- renderPrint({
     c(exp_sdev_th(), sd(simus_selected()))
   })
+  
+  
+  
+  #
+  # Mean Values Panel
+  #
+  output$plotMeanValues <- renderPlot({
+    plot(simus_mean(), 
+         main = "Mean value of each simulation",
+         xlab = "Index of the simulation",
+         ylab = "Mean Value")
+    abline(h = mean(simus_mean()), col = "purple", lwd = 2)
+    abline(h = exp_mean_th(), col = "red", lwd = 2)
+  })
+  
+  output$meanValue <- renderPrint({
+    c(exp_mean_th(), mean(simus_mean()))
+  })
+  
+  output$varianceValue <- renderPrint({
+    c(exp_sdev_th()*exp_sdev_th()/input$n, var(simus_mean()))
+  })
+  output$summaryMeanValues <- renderPrint(
+    summary(simus_mean())
+  )
   
   
   
@@ -101,10 +126,16 @@ shinyServer(function(input, output, clientData, session) {
                               colour = "black", 
                               aes(y = ..density..))
     h2 <- h2 + stat_function(fun = dnorm, 
-                             size = 2, 
+                             size = 1, 
                              colour = "red")
-    h2  
+    h2 <- h2 + labs(title = "Histogram of normalized mean values",
+                   x = "Normalized Mean Values")
+    h2
     })
+  
+  output$stats <- renderPrint({
+    summary(simus_mean_normalized())
+  })
   
   
   #
@@ -114,11 +145,5 @@ shinyServer(function(input, output, clientData, session) {
     qqnorm(simus_mean_normalized())
     qqline(simus_mean_normalized(), col = "red", lwd = 2)
   })
-  
-  output$stats <- renderPrint({
-    summary(simus_mean_normalized())
-  })
-  
-  
-  
+
 })
