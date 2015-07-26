@@ -10,31 +10,23 @@ widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
+## Slide 2: Read-And-Delete
 
+1. Edit YAML front matter
+2. Write using R Markdown
+3. Use an empty line followed by three dashes to separate slides!
 
-
-## Slide 2
-
-
---- .class #id 
-
-
-
+---
 ## Slide 3
   
 
 ---
-
-
-
 ## Slide 4
   
 
 ---
-
-
-
 ## Slide 5
   
 Thank you!
+
 
