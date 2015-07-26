@@ -10,20 +10,19 @@ shinyUI(fluidPage(
   navbarPage(
     "My DDD Project",
     
-    # tabPanel 1: Exp dist
     tabPanel(
-      "Exp dist & CLT",
+      "Exponential distribution & CLT",
       titlePanel("Exponential Distribution and Central Limit Theorem"),
+      br(),
       
       # sidebarLayout for Panel 1
       sidebarLayout(
+
         # Overall settings
         sidebarPanel(
           h4('Overall Settings'),
-          
           hr(),
           
-          # Lambda
           sliderInput(
             "lambda",
             "Lambda value:",
@@ -32,10 +31,8 @@ shinyUI(fluidPage(
             step = 0.05,
             value = 0.2
           ),
-          
           hr(),
           
-          # bins
           sliderInput(
             "n",
             "Number of exponentials per simulation:",
@@ -44,11 +41,8 @@ shinyUI(fluidPage(
             step = 5,
             value = 25
           ),
-          
-          
           hr(),
           
-          # nosim
           sliderInput(
             "nosim",
             "Number of simulations:",
@@ -62,6 +56,11 @@ shinyUI(fluidPage(
 
         # mainPanel for tabPanel 1
         mainPanel(tabsetPanel(
+
+          tabPanel(
+            "Help", 
+            br()
+          ),
           
           tabPanel(
             "Sample Simulation",
@@ -79,47 +78,45 @@ shinyUI(fluidPage(
             
             plotOutput("plotDistSample"),
             br(),
+            
             p("Mean: Theoritical vs Computed"),
             verbatimTextOutput("textMeanSample"),
+            
             p("SDev: Theoritical vs Computed"),
             verbatimTextOutput("textSDevSample")
           ),
           
           tabPanel(
-            "Distribution", 
-            plotOutput("plotDistSimMean")
+            "Distribution",
+            br(),
+            plotOutput("plotDistSimMean"),
+            verbatimTextOutput("TODO")
           ),
+          
           tabPanel(
             "Q-Q plot",
+            br(),
             plotOutput("plotQQSimMean"),
             br(),
             verbatimTextOutput("stats")
           )
-        )
-        )
+          
+          
+        ))
         
       )
     ),
-    
-#     tabPanel(
-#       "mtcars & lm",
-#       titlePanel("mtcars")
-#     ),
-    
+
+        
     tabPanel(
-      "Help",
-      titlePanel("Help"),
+      "About this ShinyApp",
+      titlePanel("About"),
       br()
-    ),
-    
-    tabPanel("About",
-             titlePanel("About"),
-             br()
     )
   ),
 
   # Overall Basic footer
   hr(),
-  fluidRow(column(6, offset = 1, h5("CChevalier, July 2015")))
+  fluidRow(column(10, offset = 1, h5("by CChevalier, July 2015")))
   
 ))
