@@ -30,7 +30,6 @@ shinyServer(function(input, output, clientData, session) {
   
   # Overall pool of simulations (1000 sims of 50 exp using user lambda)
   simus_pool <- reactive({
-    set.seed(8765432)
     matrix(rexp(1000 * 50, input$lambda), ncol = 50, byrow = TRUE)
   })
   
