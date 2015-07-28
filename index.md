@@ -86,7 +86,7 @@ Available on shinyapp.io: https://cchevalier.shinyapps.io/ds9-playground
 
 
 ---
-## Slide 5
+## What's in there?
 
 This ShinyApp allows the user to experiment with the exponential distribution and to assess the validity of the Central Limit Theorem (CLT) as also done in the first project of Course DS6 - Statistical Inference.
 
