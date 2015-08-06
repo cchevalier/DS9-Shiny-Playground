@@ -14,7 +14,7 @@ mode        : selfcontained
 ---
 ## Remember Course DS6 - Statistical Inference?
 
-In the first project of this course we investigated the exponential distribution and the Central Limit Theorem.
+In the [first project of the DS6 course](./ds6-project1.html) we investigated the exponential distribution and the Central Limit Theorem.
 
 
 ```r
@@ -31,7 +31,7 @@ c(1/lambda, mean(demo_exp))
 ```
 
 ```
-## [1] 5.000000 6.555591
+## [1] 5.000000 4.353505
 ```
 
 ```r
@@ -40,7 +40,7 @@ c(1/lambda, sd(demo_exp))
 ```
 
 ```
-## [1] 5.000000 5.837617
+## [1] 5.00000 5.27591
 ```
 
 --- 
@@ -62,7 +62,7 @@ c(1/lambda, mean(simus_mean))
 ```
 
 ```
-## [1] 5.000000 4.985637
+## [1] 5.000000 5.055629
 ```
 
 ```r
@@ -71,7 +71,7 @@ c((1/lambda)^2 /n, var(simus_mean))
 ```
 
 ```
-## [1] 0.6250000 0.6627873
+## [1] 0.6250000 0.6281013
 ```
 
 

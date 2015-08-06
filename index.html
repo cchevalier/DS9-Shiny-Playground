@@ -51,7 +51,7 @@
     <h2>Remember Course DS6 - Statistical Inference?</h2>
   </hgroup>
   <article data-timings="">
-    <p>In the first project of this course we investigated the exponential distribution and the Central Limit Theorem.</p>
+    <p>In the <a href="./ds6-project1.html">first project of the DS6 course</a> we investigated the exponential distribution and the Central Limit Theorem.</p>
 
 <pre><code class="r">lambda &lt;- 0.2; n &lt;- 40; nosim &lt;- 1000
 demo_exp  &lt;- rexp(n, lambda)
@@ -63,14 +63,14 @@ demo_exp  &lt;- rexp(n, lambda)
 c(1/lambda, mean(demo_exp))
 </code></pre>
 
-<pre><code>## [1] 5.000000 6.555591
+<pre><code>## [1] 5.000000 4.353505
 </code></pre>
 
 <pre><code class="r"># Standard deviation of the demo distribution: Theory vs Computed demo
 c(1/lambda, sd(demo_exp))
 </code></pre>
 
-<pre><code>## [1] 5.000000 5.837617
+<pre><code>## [1] 5.00000 5.27591
 </code></pre>
 
   </article>
@@ -94,14 +94,14 @@ simus_mean &lt;- apply(simus, 1, mean)
 c(1/lambda, mean(simus_mean))
 </code></pre>
 
-<pre><code>## [1] 5.000000 4.985637
+<pre><code>## [1] 5.000000 5.055629
 </code></pre>
 
 <pre><code class="r"># Variance: CLT Theory vs Simulated
 c((1/lambda)^2 /n, var(simus_mean))
 </code></pre>
 
-<pre><code>## [1] 0.6250000 0.6627873
+<pre><code>## [1] 0.6250000 0.6281013
 </code></pre>
 
   </article>
